@@ -18,33 +18,22 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 
-import androidx.navigation.NavController
 import androidx.navigation.compose.*
 
 
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.remember
 
-
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material3.Icon
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.setValue
 
 // lastly
 
-import com.example.timecapsule.ExtendedFAB
+import com.example.timecapsule.layouts.ExtendedFAB
+import com.example.timecapsule.layouts.BottomNavigationBar
+import com.example.timecapsule.pages.HomePage
+import com.example.timecapsule.pages.SettingsPage
 
 
 data class Message(val author: String, val body: String)
@@ -98,38 +87,6 @@ fun TimeCapsule() {
 }
 
 
-
-@Composable
-fun BottomNavigationBar(navController: NavController) {
-
-    var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf("Home", "Settings")
-    val itemsRoutes = listOf("home", "settings")
-    val selectedIcons = listOf(Icons.Filled.Home, Icons.Filled.Settings)
-    val unselectedIcons =
-        listOf(Icons.Outlined.Home, Icons.Outlined.Settings)
-
-    NavigationBar {
-        items.forEachIndexed { index, item ->
-            NavigationBarItem(
-                icon = {
-                    Icon(
-                        if (selectedItem == index) selectedIcons[index] else unselectedIcons[index],
-                        contentDescription = item
-                    )
-                },
-                label = { Text(item) },
-                selected = selectedItem == index,
-                onClick = {
-                    selectedItem = index
-                    navController.navigate(itemsRoutes[index])
-                }
-            )
-        }
-    }
-
-}
-
 @Composable
 fun MessageCard(msg: Message) {
     Row {
@@ -140,17 +97,6 @@ fun MessageCard(msg: Message) {
         }
     }
 
-}
-
-
-@Composable
-fun HomePage(navController: NavController) {
-    Conversation(data.sampleData)
-}
-
-@Composable
-fun SettingsPage(navController: NavController) {
-    Text("This is my page")
 }
 
 @Composable

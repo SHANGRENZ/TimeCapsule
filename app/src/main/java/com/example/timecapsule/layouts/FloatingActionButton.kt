@@ -1,4 +1,4 @@
-package com.example.timecapsule
+package com.example.timecapsule.layouts
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
