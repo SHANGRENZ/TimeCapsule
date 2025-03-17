@@ -1,4 +1,4 @@
-package com.example.timecapsule.pages
+package com.zhoushangren.timecapsule.pages
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

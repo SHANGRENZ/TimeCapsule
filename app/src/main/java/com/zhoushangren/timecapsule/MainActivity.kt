@@ -1,38 +1,35 @@
-package com.example.timecapsule
+package com.zhoushangren.timecapsule
 
+// lastly
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.timecapsule.ui.theme.TimeCapsuleTheme
-
-import androidx.compose.material3.Text
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-
-import androidx.navigation.compose.*
-
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-
-// lastly
-
-import com.example.timecapsule.layouts.ExtendedFAB
-import com.example.timecapsule.layouts.BottomNavigationBar
-import com.example.timecapsule.pages.ComposePage
-import com.example.timecapsule.pages.HomePage
-import com.example.timecapsule.pages.SettingsPage
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.zhoushangren.timecapsule.layouts.BottomNavigationBar
+import com.zhoushangren.timecapsule.layouts.ExtendedFAB
+import com.zhoushangren.timecapsule.pages.HomePage
+import com.zhoushangren.timecapsule.pages.SettingsPage
+import com.zhoushangren.timecapsule.ui.theme.TimeCapsuleTheme
 
 
 data class Message(val author: String, val body: String)
@@ -73,9 +70,7 @@ fun TimeCapsule() {
             )
         },
         floatingActionButton = {
-            ExtendedFAB {
-                navController.navigate("compose")
-            }
+            ExtendedFAB()
         }
     ) { innerPadding ->
         NavHost(navController = navController,
@@ -83,12 +78,6 @@ fun TimeCapsule() {
             modifier = Modifier.padding(innerPadding)) {
             composable("home") { HomePage(navController) }
             composable("settings") { SettingsPage(navController) }
-            composable(
-                route = "compose",
-                enterTransition = {
-                    slideIntoContainer(towards = AnimatedContentTransitionScope.SlideDirection.Up)
-                }
-                ) { ComposePage(navController) }
         }
     }
 }

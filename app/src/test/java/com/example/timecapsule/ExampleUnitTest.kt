@@ -1,4 +1,4 @@
-package com.example.timecapsule
+package com.zhoushangren.timecapsule
 
 import org.junit.Test
 
